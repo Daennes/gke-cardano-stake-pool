@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  # To provide volumes for multiple nodes, this section is
+  # duplicated and each one has a unique name
+  name: cardano-mainnet-relay-data-pv-1
+spec:
+  capacity:
+    storage: 25Gi
+  accessModes:
+    - ReadWriteOnce # Only allow one container to use this volume
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: local-storage-mainnet-relay
+  # Set the path to the folder on the node that will be mounted for this volume
+  hostPath:
+    path: /data
+
